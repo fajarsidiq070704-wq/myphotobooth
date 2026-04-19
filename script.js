@@ -10,11 +10,13 @@ const takePhotoButton = document.getElementById("takePhoto");
 const context = canvas.getContext("2d");
 const frameImage = new Image();
 
+const DEFAULT_CANVAS_WIDTH = 360;
+const DEFAULT_CANVAS_HEIGHT = 640;
+
 let currentStream = null;
-let currentFrameName = "";
+let currentFrameName = frameSelect.value || "";
 const uploadedFrames = new Map();
 
-// Ubah angka slot di sini kalau posisi lubang frame kamu berbeda.
 const frameConfigs = {
   default: {
     slots: [
@@ -32,10 +34,7 @@ function setCanvasSize(width, height) {
 }
 
 function drawFrameOnly() {
-  if (!frameImage.src) {
-    return;
-  }
-
+  if (!frameImage.src) return;
   context.clearRect(0, 0, canvas.width, canvas.height);
   context.drawImage(frameImage, 0, 0, canvas.width, canvas.height);
 }
@@ -48,9 +47,7 @@ function drawImageCover(ctx, media, dx, dy, dWidth, dHeight) {
   const sw = media.videoWidth;
   const sh = media.videoHeight;
 
-  if (!sw || !sh) {
-    return;
-  }
+  if (!sw || !sh) return;
 
   const srcRatio = sw / sh;
   const destRatio = dWidth / dHeight;
@@ -76,19 +73,14 @@ async function countdown() {
     countdownText.innerText = i;
     await new Promise((resolve) => setTimeout(resolve, 1000));
   }
-
   countdownText.innerText = "";
 }
 
 async function startCamera() {
-  if (currentStream) {
-    return;
-  }
+  if (currentStream) return;
 
   currentStream = await navigator.mediaDevices.getUserMedia({
-    video: {
-      facingMode: "user"
-    },
+    video: { facingMode: "user" },
     audio: false
   });
 
@@ -135,11 +127,11 @@ async function takeMultiplePhotos() {
 function addFrameOption(name, url) {
   uploadedFrames.set(name, url);
 
-  const optionExists = Array.from(frameSelect.options).some(
+  const exists = Array.from(frameSelect.options).some(
     (option) => option.value === name
   );
 
-  if (!optionExists) {
+  if (!exists) {
     const option = document.createElement("option");
     option.value = name;
     option.textContent = name;
@@ -149,12 +141,8 @@ function addFrameOption(name, url) {
 
 function loadSelectedFrame(name) {
   const frameUrl = uploadedFrames.get(name);
-  if (!frameUrl) {
-    return;
-  }
-
   currentFrameName = name;
-  frameImage.src = frameUrl;
+  frameImage.src = frameUrl || name;
 }
 
 frameImage.onload = () => {
@@ -208,3 +196,9 @@ download.addEventListener("click", (event) => {
     alert("Ambil foto dulu sebelum download.");
   }
 });
+
+setCanvasSize(DEFAULT_CANVAS_WIDTH, DEFAULT_CANVAS_HEIGHT);
+
+if (currentFrameName) {
+  loadSelectedFrame(currentFrameName);
+}
