@@ -5,9 +5,9 @@
 body {
   margin: 0;
   min-height: 100vh;
-  font-family: "Segoe UI", sans-serif;
-  background: #111;
-  color: #fff;
+  font-family: Arial, sans-serif;
+  background: #111111;
+  color: #ffffff;
 }
 
 .app {
@@ -28,28 +28,31 @@ body {
 .preview-panel h1 {
   margin: 0 0 16px;
   font-size: 32px;
+  font-weight: bold;
 }
 
 #video {
   width: min(92vw, 360px);
-  aspect-ratio: 3 / 4;
+  height: 480px;
   object-fit: cover;
   border: 4px solid #ff4f93;
   border-radius: 16px;
-  background: #000;
+  background: #000000;
 }
 
 .countdown {
   min-height: 52px;
   margin: 16px 0 0;
   font-size: 48px;
-  font-weight: 700;
+  font-weight: bold;
   color: #ffe100;
 }
 
 #canvas {
-  width: min(92vw, 340px);
-  max-height: 86vh;
+  display: block;
+  width: auto;
+  max-width: 92vw;
+  height: 480px;
   border: 3px solid #21d4fd;
   border-radius: 16px;
   background: #f0cfc5;
@@ -60,7 +63,7 @@ body {
 }
 
 .control-group {
-  max-width: 340px;
+  width: min(92vw, 340px);
   margin: 0 auto 14px;
   display: flex;
   flex-direction: column;
@@ -68,7 +71,7 @@ body {
 }
 
 .control-group label {
-  font-weight: 600;
+  font-weight: bold;
 }
 
 .control-group input,
@@ -77,8 +80,8 @@ body {
   padding: 10px 12px;
   border: 2px solid #ff4f93;
   border-radius: 10px;
-  background: #fff;
-  color: #111;
+  background: #ffffff;
+  color: #111111;
 }
 
 .buttons {
@@ -92,28 +95,28 @@ body {
 
 button,
 #download {
-  border: 0;
+  border: none;
   border-radius: 12px;
   padding: 14px 22px;
   font-size: 18px;
+  font-weight: bold;
   cursor: pointer;
+  text-decoration: none;
 }
 
 button {
   background: #ff3b82;
-  color: #fff;
+  color: #ffffff;
+}
+
+#download {
+  background: #ffe100;
+  color: #111111;
 }
 
 button:hover,
 #download:hover {
   opacity: 0.9;
-}
-
-#download {
-  background: #ffe100;
-  color: #111;
-  text-decoration: none;
-  font-weight: 700;
 }
 
 @media (max-width: 800px) {
@@ -123,5 +126,10 @@ button:hover,
 
   .preview-panel h1 {
     font-size: 28px;
+  }
+
+  #video,
+  #canvas {
+    height: 420px;
   }
 }
