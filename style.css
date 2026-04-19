@@ -1,0 +1,127 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Segoe UI", sans-serif;
+  background: #111;
+  color: #fff;
+}
+
+.app {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 32px 20px 16px;
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.preview-panel h1 {
+  margin: 0 0 16px;
+  font-size: 32px;
+}
+
+#video {
+  width: min(92vw, 360px);
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border: 4px solid #ff4f93;
+  border-radius: 16px;
+  background: #000;
+}
+
+.countdown {
+  min-height: 52px;
+  margin: 16px 0 0;
+  font-size: 48px;
+  font-weight: 700;
+  color: #ffe100;
+}
+
+#canvas {
+  width: min(92vw, 340px);
+  max-height: 86vh;
+  border: 3px solid #21d4fd;
+  border-radius: 16px;
+  background: #f0cfc5;
+}
+
+.controls {
+  padding: 0 20px 32px;
+}
+
+.control-group {
+  max-width: 340px;
+  margin: 0 auto 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.control-group label {
+  font-weight: 600;
+}
+
+.control-group input,
+.control-group select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 2px solid #ff4f93;
+  border-radius: 10px;
+  background: #fff;
+  color: #111;
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 18px;
+}
+
+button,
+#download {
+  border: 0;
+  border-radius: 12px;
+  padding: 14px 22px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+button {
+  background: #ff3b82;
+  color: #fff;
+}
+
+button:hover,
+#download:hover {
+  opacity: 0.9;
+}
+
+#download {
+  background: #ffe100;
+  color: #111;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+@media (max-width: 800px) {
+  .app {
+    padding-top: 20px;
+  }
+
+  .preview-panel h1 {
+    font-size: 28px;
+  }
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Photobooth Frame</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <section class="panel preview-panel">
+      <h1>Photobooth</h1>
+      <video id="video" autoplay playsinline muted></video>
+      <p id="countdown" class="countdown"></p>
+    </section>
+
+    <section class="panel result-panel">
+      <canvas id="canvas"></canvas>
+    </section>
+  </main>
+
+  <section class="controls">
+    <div class="control-group">
+      <label for="framePicker">Upload frame</label>
+      <input id="framePicker" type="file" accept="image/*" multiple>
+    </div>
+
+    <div class="control-group">
+      <label for="frameSelect">Pilih frame</label>
+      <select id="frameSelect"></select>
+    </div>
+
+    <div class="buttons">
+      <button id="startCamera" type="button">Start Camera</button>
+      <button id="takePhoto" type="button">Ambil Foto</button>
+      <a id="download" href="#" download="photobooth.png">Download Foto</a>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
